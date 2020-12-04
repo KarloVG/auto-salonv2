@@ -4,35 +4,40 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CarDetailComponent } from './car-detail/car-detail.component';
-import { NgbCarousel, NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { UserRoleDirective } from './directives/user-role.directive';
-import { UserDirective } from './directives/user.directive';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './login/login.component';
-import { ProfileComponent } from './profile/profile/profile.component';
-import { AuthService } from './services/auth.service';
-import { NotFoundComponent } from './not-found/not-found.component';
+
+import { AdminAddCarComponent } from './admin/admin-add-car/admin-add-car.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { JwtInterceptor } from './helpers/jwt.interceptor';
+import { ErrorInterceptor } from './helpers/error.interceptor';
+import { NotFoundComponent } from './not-found/404/not-found.component';
+import { ForbiddenComponent } from './not-found/403/forbidden/forbidden.component';
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './services/in-memory-data.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     CarDetailComponent,
-    ProfileComponent,
-    UserRoleDirective,
-    UserDirective,
     LoginComponent,
-    ProfileComponent,
-    NotFoundComponent
+    AdminAddCarComponent,
+    NotFoundComponent,
+    ForbiddenComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    NgbModule,
+    FormsModule,
+    InMemoryWebApiModule.forRoot(InMemoryDataService)
   ],
-  exports:[
-    UserDirective,
-    UserRoleDirective
+  exports:[],
+  providers: [
   ],
-  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

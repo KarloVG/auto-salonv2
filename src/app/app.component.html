@@ -1,34 +1,29 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">AUTO SALON Ferox</a> 
+  <a class="navbar-brand" href="/home">AUTO SALON Ferox</a> 
   <!-- FEROX-DIVLJI -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active home">
-        <a class="nav-link" [routerLink]="['/']">Naslovnica<span class="sr-only">(current)</span></a>
-      </li>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+    <ul class="navbar-nav">
+      <!-- <li class="nav-item active home">
+        <a class="nav-link" routerLink="/">Naslovnica<span class="sr-only">(current)</span></a>
+      </li> -->
       <!-- Admin only -->
-      <li class="nav-item active" *ngIf="isAdmin">
-        <a class="nav-link" [routerLink]="['admin', 'addVehicle']">Dodaj vozilo</a>
-      </li>
-      <!-- Authorized only -->
-      <li class="nav-item active login" *ngIf="isAuthorized">
-        <a class="nav-link" [routerLink]="['profile']">Profil</a>
+      <li class="nav-item active addVehicle" *ngIf="currentUser && isAdmin">
+        <button class="nav-link"class="btn btn-success" routerLink="/home/admin">Dodaj vozilo</button>
       </li>
       <!-- Anonymous only -->
-      <li class="nav-item active login">
-        <a class="nav-link" [routerLink]="['login']">Login</a>
+      <li class="nav-item active login" *ngIf="!currentUser">
+        <a class="nav-link" routerLink="/login">Login</a>
       </li>
       <!-- Authorized only -->
-      <li class="nav-item active login" *ngIf="isAuthorized">
+      <li class="nav-item active login" *ngIf="currentUser">
         <a class="nav-link" (click)="logout()">Logout</a>
       </li>
     </ul>
   </div>
 </nav>
 <router-outlet></router-outlet>
-ovo je test

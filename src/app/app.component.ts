@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Role } from './models/role';
-import { AuthService } from './services/auth.service';
+import { User } from './models/user';
+import { AuthenticationService } from './services/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -11,23 +12,21 @@ import { AuthService } from './services/auth.service';
 export class AppComponent {
   title = 'Auto-salon';
 
-  Role = Role;
+  currentUser: User;
 
   constructor(
-    private router: Router,
-    private authService: AuthService){}
-  
-
-  get isAuthorized(){
-    return this.authService.isAuthorized();
+      private router: Router,
+      private authenticationService: AuthenticationService
+  ) {
+      this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
 
-  get isAdmin(){
-    return this.authService.hasRole(Role.Admin);
+  get isAdmin() {
+      return this.currentUser && this.currentUser.role === Role.Admin;
   }
 
-  logout(){
-    this.authService.logout();
-    this.router.navigate(['login']);
+  logout() {
+      this.authenticationService.logout();
+      this.router.navigate(['/login']);
   }
 }

@@ -1,0 +1,1 @@
+https://suchen.mobile.de/fahrzeuge/details.html?id=312693039&damageUnrepaired=NO_DAMAGE_UNREPAIRED&isSearchRequest=true&makeModelVariant1.makeId=25100&makeModelVariant1.modelDescription=r&makeModelVariant1.modelId=18&pageNumber=1&scopeId=C&sfmr=false&sortOption.sortBy=searchNetGrossPrice&sortOption.sortOrder=DESCENDING&searchId=d9d1920b-d4eb-2ddf-4f25-c7e283f03ae9

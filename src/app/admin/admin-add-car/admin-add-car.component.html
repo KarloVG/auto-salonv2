@@ -1,0 +1,150 @@
+<div class="container pt-4">
+    <div class="carList">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Automobil</th>
+                    <th scope="col">Snaga</th>
+                    <th scope="col">Kilometri</th>
+                    <th scope="col">Obujam motora</th>
+                    <th scope="col">Gorivo</th>
+                    <th scope="col">Mjenjač</th>
+                    <th scope="col">Godina proizvodnje</th>
+                    <th scope="col">Cijena</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let car of cars"(click)="selectedCar(car)">
+                    <th scope="row">{{car.id}}</th>
+                    <td >{{car.name}}</td>
+                    <td>{{car.power}}</td>
+                    <td>{{car.mileage}}</td>
+                    <td>{{car.cubicCapacity}}</td>
+                    <td>{{car.fuel}}</td>
+                    <td>{{car.gearbox}}</td>
+                    <!-- tu je bilo <td>{{car.productionYear.value}}</td> -->
+                    <td>{{car.productionYearString}}</td> 
+                    <td>{{car.price}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="carAdd">
+        <h3 class="addCar">Dodavanje novog vozila</h3>
+        <form [formGroup]="formGroup" (ngSubmit)='submit()' #myForm='ngForm'class="forma">
+            <div class="form-group row">
+                <label for="name" class="col-sm-2 col-form-label">Naziv vozila</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="name" placeholder="npr. Audi 100"
+                        formControlName="name" [ngClass]="{'is-invalid':name.invalid && (name.dirty || name.touched)}">
+                    <div class="invalid-feedback">Polje je obavezno</div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="mileage" class="col-sm-2 col-form-label">Kilometraža vozila</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="mileage" placeholder="npr. 20000 km"
+                        formControlName="mileage"[ngClass]="{'is-invalid':mileage.invalid && (mileage.dirty || mileage.touched)}">
+                    <div class="invalid-feedback">Polje je obavezno</div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="cubicCapacity" class="col-sm-2 col-form-label">Obujam motora</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="cubicCapacity" placeholder="npr. 2400 ccm"
+                        formControlName="cubicCapacity"[ngClass]="{'is-invalid':cubicCapacity.invalid && (cubicCapacity.dirty || cubicCapacity.touched)}">
+                        <div class="invalid-feedback">Polje je obavezno</div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="power" class="col-sm-2 col-form-label">Snaga</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="power" placeholder="npr. 120 ks"(keyup)="addSymbol($event)"
+                        formControlName="power"[ngClass]="{'is-invalid':power.invalid && (power.dirty || power.touched)}">
+                        <div class="invalid-feedback">Polje je obavezno</div>
+                </div>
+            </div>
+            <!-- <div class="form-group row">
+                <label for="productionYear" class="col-sm-2 col-form-label">Godina proizvodnje</label>
+                <div class="col-sm-10">
+                    <input required type="number" type="text" class="form-control" id="productionYear" placeholder="npr. 1980"
+                        formControlName="productionYear"[ngClass]="{'is-invalid':productionYear.invalid && (productionYear.dirty || productionYear.touched )}">
+                        <div class="invalid-feedback">Polje je obavezno</div>        
+                </div>
+            </div> -->
+            <div class="form-group row">
+                <label for="productionYear" class="col-sm-2 col-form-label">Godina proizvodnje</label>
+                <div class="col-sm-10">
+                <select class="year-select" (change)="changeYear($event)" formControlName="productionYear" class="form-control" id="productionYear">
+                    <option value="" disabled>Choose year of production</option>
+                    <!-- tu sam promijenio [ngValue]="year.value" -->
+                    <option *ngFor="let year of years" [ngValue]="year.id">{{year.value}}</option>
+                </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="price" class="col-sm-2 col-form-label">Cijena</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="price" placeholder="npr. €24000"
+                        formControlName="price"[ngClass]="{'is-invalid':price.invalid && (price.dirty || price.touched)}">
+                        <div class="invalid-feedback">Polje je obavezno</div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="description" class="col-sm-2 col-form-label">Opis</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="description" formControlName="description">
+                </div>
+            </div>
+            <fieldset class="form-group">
+                <div class="row">
+                    <legend class="col-form-label col-sm-2">Vrsta goriva</legend>
+                    <div class="fuel">
+                        <div class="form-check">
+                            <input class="form-check-input-fuel" type="radio" name="fuel" id="fuel"formControlName="fuel"
+                                value="dizel">
+                            <label class="form-check-label-fuel" for="fuel">
+                                Dizel
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input-fuel" type="radio" name="fuel" id="fuel"formControlName="fuel"
+                                value="benzin">
+                            <label class="form-check-label-fuel" for="fuel">
+                                Benzin
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset class="form-group">
+                <div class="row">
+                    <legend class="col-form-label col-sm-2">Vrsta mjenjača</legend>
+                    <div class="gear">
+                        <div class="form-check">
+                            <input class="form-check-input-gear" type="radio" name="gearbox" id="gearbox"formControlName="gearbox"
+                                value="ručni">
+                            <label class="form-check-label-gear" for="gearbox">
+                                Ručni
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input-gear" type="radio" name="gearbox" id="gearbox"formControlName="gearbox"
+                                value="automatski">
+                            <label class="form-check-label-gear" for="gearbox">
+                                Automatski
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="form-group row">
+                <div class="buttonAddCar px-2">
+                    <button type="submit" [disabled]="!formGroup.valid"class="btn btn-primary"*ngIf="addEdit">Dodaj novo vozilo</button>
+                    <button type="submit" class="btn btn-primary">Uređivanje</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

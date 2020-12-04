@@ -1,0 +1,1 @@
+https://suchen.mobile.de/fahrzeuge/details.html?id=301310825&damageUnrepaired=NO_DAMAGE_UNREPAIRED&isSearchRequest=true&makeModelVariant1.makeId=1100&makeModelVariant1.modelId=2&pageNumber=1&scopeId=C&sfmr=false&sortOption.sortBy=searchNetGrossPrice&sortOption.sortOrder=DESCENDING&searchId=ced32483-0495-4f60-5adc-287c27c946ff

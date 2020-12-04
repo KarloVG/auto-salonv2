@@ -1,0 +1,1 @@
+https://suchen.mobile.de/fahrzeuge/details.html?id=310528632&damageUnrepaired=NO_DAMAGE_UNREPAIRED&isSearchRequest=true&makeModelVariant1.makeId=17200&makeModelVariant1.modelDescription=2.3&makeModelVariant1.modelId=126&pageNumber=1&scopeId=C&sfmr=false&sortOption.sortBy=searchNetGrossPrice&sortOption.sortOrder=DESCENDING&searchId=7a8593e3-7c64-63ae-dd8a-613349f8fe4b

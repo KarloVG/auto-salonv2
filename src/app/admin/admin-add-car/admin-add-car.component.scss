@@ -1,0 +1,38 @@
+.tables{
+    display: flex;
+    padding-top: 30px;
+}
+.addCar{
+    background-color: #343a40;
+    color: #fff;
+    font-size: 20px;
+    border:2px solid;
+    height: 8%;
+    padding:12px;
+}
+th{
+    font-size: 20px;
+}
+.forma{
+    padding-left: 12px;
+}
+label{
+    padding:8px;
+}
+.gear{
+    display: flex;
+    flex-direction: row;
+}
+.fuel{
+    display: flex;
+    flex-direction: row;
+}
+legend{
+    padding:8px;
+}
+tr{
+    &:hover{
+        background:darken( #d1dbdf,10%);
+    }
+}
+

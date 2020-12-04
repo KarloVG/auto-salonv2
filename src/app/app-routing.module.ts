@@ -1,47 +1,37 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from './helpers/auth.guard';
 import { CarDetailComponent } from './car-detail/car-detail.component';
 import { LoginComponent } from './login/login.component';
 import { Role } from './models/role';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { ProfileComponent } from './profile/profile/profile.component';
-import { AuthService } from './services/auth.service';
+import { AdminAddCarComponent } from './admin/admin-add-car/admin-add-car.component';
+import { NotFoundComponent } from './not-found/404/not-found.component';
+import { ForbiddenComponent } from './not-found/403/forbidden/forbidden.component';
 
 
 const routes: Routes = [
   {
-    path: '',
-    children: [
-      {
-        path: '',
-        component: CarDetailComponent
-      },
-      {
-        path: 'profile',
-        canActivate: [AuthGuard],
-        component: ProfileComponent
-      },
-      {
-        path: 'login',
-        component: LoginComponent
-      }
-    ]
+    path:'home',
+    component: CarDetailComponent,
+    // canActivate:[AuthGuard]
   },
   {
-    path: 'admin',
-    canLoad: [AuthGuard],
-    canActivate: [AuthGuard],
-    data: {
-      roles: [
-        Role.Admin,
-      ]
-    },
-    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
+    path:'home/admin',
+    component:AdminAddCarComponent,
+    canActivate:[AuthGuard],
+    data:{roles:[Role.Admin]}
   },
   {
-    path: '**',
+    path:'login',
+    component:LoginComponent
+  },
+  {
+    path: 'not-found',
     component: NotFoundComponent
+  },
+  {
+    path: 'forbidden',
+    component: ForbiddenComponent
   }
 ];
 
@@ -50,7 +40,6 @@ const routes: Routes = [
   exports: [RouterModule],
   providers:[
     AuthGuard,
-    AuthService
   ]
 })
 export class AppRoutingModule { }
